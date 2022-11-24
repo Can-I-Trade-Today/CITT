@@ -1,5 +1,5 @@
 const nodeExternals = require("webpack-node-externals");
-const dotenv = require("dotenv-safe");
+const dotenv = require("dotenv-webpack");
 const webpack = require("webpack");
 
 const env = process.env.NODE_ENV || "production";

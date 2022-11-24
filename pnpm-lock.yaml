@@ -15,14 +15,14 @@ importers:
   apps/api:
     specifiers:
       '@fastify/aws-lambda': ^3.1.3
-      dotenv-safe: ^8.2.0
+      dotenv-webpack: ^8.0.1
       fastify: ^4.10.2
       netlify-lambda: ^2.0.15
       webpack: ^5.75.0
       webpack-node-externals: ^3.0.0
     dependencies:
       '@fastify/aws-lambda': 3.1.3
-      dotenv-safe: 8.2.0
+      dotenv-webpack: 8.0.1_webpack@5.75.0
       fastify: 4.10.2
       netlify-lambda: 2.0.15
       webpack: 5.75.0
@@ -2500,10 +2500,20 @@ packages:
     engines: {node: '>=0.4', npm: '>=1.2'}
     dev: false
 
-  /dotenv-safe/8.2.0:
-    resolution: {integrity: sha512-uWwWWdUQkSs5a3mySDB22UtNwyEYi0JtEQu+vDzIqr9OjbDdC2Ip13PnSpi/fctqlYmzkxCeabiyCAOROuAIaA==}
+  /dotenv-defaults/2.0.2:
+    resolution: {integrity: sha512-iOIzovWfsUHU91L5i8bJce3NYK5JXeAwH50Jh6+ARUdLiiGlYWfGw6UkzsYqaXZH/hjE/eCd/PlfM/qqyK0AMg==}
     dependencies:
       dotenv: 8.6.0
+    dev: false
+
+  /dotenv-webpack/8.0.1_webpack@5.75.0:
+    resolution: {integrity: sha512-CdrgfhZOnx4uB18SgaoP9XHRN2v48BbjuXQsZY5ixs5A8579NxQkmMxRtI7aTwSiSQcM2ao12Fdu+L3ZS3bG4w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      webpack: ^4 || ^5
+    dependencies:
+      dotenv-defaults: 2.0.2
+      webpack: 5.75.0
     dev: false
 
   /dotenv/8.6.0:
