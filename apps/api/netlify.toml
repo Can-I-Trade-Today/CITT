@@ -1,7 +1,7 @@
 [build]
   # This will be run the site build
   base = "apps/api/"
-  command = "pnpm build:functions"
+  command = "pnpm i && pnpm build:functions"
   # This is the directory is publishing to netlify's CDN
   # and this is directory of your front of your app
   # publish = "build"
