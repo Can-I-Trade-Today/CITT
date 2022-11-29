@@ -1,4 +1,5 @@
 [build]
+  base = "apps/website/"
   # This will be run the site build
   # command = ""
   # This is the directory is publishing to netlify's CDN
@@ -6,4 +7,4 @@
   # publish = "build"
   # functions build directory
   # functions = "functions-build" # always appends `-build` folder to your `functions` folder for builds
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
