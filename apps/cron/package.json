@@ -1,19 +1,17 @@
 {
-  "name": "netlify-express",
+  "name": "netlify-cronjob",
   "version": "0.0.1",
-  "description": "Example of how to deploy a Express.js Netlify app.",
-  "main": "functions/server.js",
+  "description": "Cron Job Netlify app.",
+  "main": "functions/cron-job.js",
   "scripts": {
-    "build": "netlify-lambda build express",
-    "start": "nodemon server-local.js"
+    "build": "netlify-lambda build express"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neverendingqs/netlify-express.git"
   },
   "keywords": [
-    "netlify",
-    "express.js"
+    "netlify"
   ],
   "author": "neverendingqs",
   "license": "Apache-2.0",
