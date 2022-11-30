@@ -5,3 +5,13 @@
   #ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 [functions."cron-job"]
   schedule = "@hourly"
+[[redirects]]
+  from = "https://cron.canitradetoday.com/*"
+  to = "https://cron.canitrade.today/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://can-i-trade-cron.netlify.app/*"
+  to = "https://cron.canitrade.today/:splat"
+  status = 301
+  force = true
