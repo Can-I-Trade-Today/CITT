@@ -16,7 +16,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>Hello from Earde and Hessel!</h1>");
-  const result = await client.db("StockData").collection("IWO").find({}).limit(50).toArray();
+  const result = await client.db("StockData").collection("IWO").find({}).sort({_id:-1}).limit(50).toArray();
   res.write(`<h1>${JSON.stringify(result)}</h1>`);
   res.end();
 });

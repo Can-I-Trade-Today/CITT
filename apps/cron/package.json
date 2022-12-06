@@ -4,7 +4,7 @@
   "description": "Cron Job Netlify app.",
   "main": "functions/cron-job.js",
   "scripts": {
-    "build": "netlify-lambda build express"
+    "start": "netlify dev"
   },
   "repository": {
     "type": "git",
