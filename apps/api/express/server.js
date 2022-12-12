@@ -17,7 +17,13 @@ router.get("/", async (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>Hello from Earde and Hessel!</h1>");
   const result = await client.db("StockData").collection("IWO").find({}).sort({_id:-1}).limit(50).toArray();
+  let sma50 = 0;
+  for (let x of result) {
+    sma50 += x.close;
+  }
+  sma50 /= 50.0;
   res.write(`<h1>${JSON.stringify(result)}</h1>`);
+  res.write(`<h1>${sma50}</h1>`);
   res.end();
 });
 router.get("/another", (req, res) => res.json({ route: req.originalUrl }));
