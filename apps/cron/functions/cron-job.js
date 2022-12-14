@@ -14,23 +14,32 @@ const handler = async function (event, context) {
   const database = client.db("StockData");
   const iwoCollection = database.collection("IWO");
   const latestIwo = await iwoCollection.find({}).sort({_id:-1}).limit(1).toArray();
-  console.log(latestIwo[0]);
+  const latestDate = latestIwo[0].date;
+  const todayDate = new Date();
+  const from = latestDate.toISOString('yyyy-mm-dd').split('T')[0];
+  const to = todayDate.toISOString('yyyy-mm-dd').split('T')[0];
+  console.log(from);
 
-
-
-  // yahooFinance.historical({
-  //   symbol: 'IWO',
-  //   from: '2022-12-01',
-  //   to: '2022-12-07',
-  //   period: 'd'
-  // }, async function(err, quotes) {
-  //   console.log(quotes);
-  //   const writeResult = await iwoCollection.insertMany(quotes);
-  //   console.log(writeResult.insertedCount);
-  // });
+  yahooFinance.historical({
+    symbol: 'IWO',
+    from: from,
+    to: to,
+    period: 'd'
+  }, async function(err, quotes) {
+    quotes.reverse();
+    quotes = quotes.filter(item => !(item.date <= latestDate))
+    console.log(quotes);
+    if (quotes.length > 0) {
+      const writeResult = await iwoCollection.insertMany(quotes);
+      console.log(writeResult.insertedCount);
+    }
+  });
 
   return {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   };
 };
 
