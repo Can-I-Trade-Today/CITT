@@ -1,7 +1,7 @@
 {
   "name": "netlify-express",
   "version": "0.0.1",
-  "description": "Example of how to deploy a Express.js Netlify app.",
+  "description": "Can I Trade API",
   "main": "functions/server.js",
   "scripts": {
     "build": "netlify-lambda build express",
