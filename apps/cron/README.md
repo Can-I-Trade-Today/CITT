@@ -1,4 +1,4 @@
-# Express.js on Netlify Example
+# Express.js on Netlify
 
 ## How To
 
