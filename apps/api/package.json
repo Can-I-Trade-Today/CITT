@@ -22,12 +22,16 @@
   },
   "homepage": "https://github.com/neverendingqs/netlify-express#readme",
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0",
     "body-parser": "^1.19.0",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "mongodb": "^4.12.1",
     "netlify-lambda": "^1.6.3",
     "nodemon": "^1.19.2",
-    "serverless-http": "^2.3.0"
+    "serverless-http": "^2.3.0",
+    "webpack": "^5.75.0"
   }
 }
