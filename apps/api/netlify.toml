@@ -2,7 +2,7 @@
   base = "apps/api/"
   command = "yarn install && yarn build"
   functions = "functions"
-  #ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 [[redirects]]
   from = "https://api.canitradetoday.com/*"
   to = "https://api.canitrade.today/:splat"
