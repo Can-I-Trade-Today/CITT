@@ -15,13 +15,11 @@
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "^1.6.3"
   },
   "engines": {
     "node": ">=16.19.0"
   },
-  "dependencies": {},
-  "packageManager": "yarn@1.22.19",
   "contributors": [
     {
       "name": "Hessel Amann",

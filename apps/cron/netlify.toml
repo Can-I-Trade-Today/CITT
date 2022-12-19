@@ -1,6 +1,6 @@
 [build]
   base = "apps/cron/"
-  command = "yarn install"
+  command = "npm install"
   functions = "functions"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 [functions."cron-job"]
