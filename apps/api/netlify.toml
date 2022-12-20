@@ -1,6 +1,6 @@
 [build]
   base = "apps/api/"
-  command = "cd ../../ && npm install && cd apps/api && npm run build"
+  command = "pnpm install && pnpm build"
   functions = "functions"
   #ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
 [[redirects]]
