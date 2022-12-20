@@ -31,6 +31,5 @@
       "email": "eardelb@gmail.com"
     }
   ],
-  "license": "UNLICENSED",
-  "packageManager": "^pnpm@7.18.2"
+  "license": "UNLICENSED"
 }
