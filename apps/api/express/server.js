@@ -8,22 +8,44 @@ const dotenv = require('dotenv');
 dotenv.config({ path: '../../.env' });
 
 //MongoDB
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongoose = require('mongoose');
 const uri = `mongodb+srv://${process.env.DATABASE_UN}:${process.env.DATABASE_PW}@citt-cluster.xllgjxx.mongodb.net/?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+mongoose.connect(uri);
+var db = mongoose.connection;
+db = db.useDb('StockData');
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Connection Successful!");
+  console.log(db.db);
+});
+
+var candlestickSchema = mongoose.Schema({
+  date: Date,
+  high: Number,
+  low: Number,
+  open: Number,
+  close: Number,
+  adjClose: Number,
+  volume: Number,
+  symbol: String
+});
+
+var candlestick = mongoose.model('Candlestick', candlestickSchema, 'IWO');
 
 const router = express.Router();
 router.get("/", async (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>Hello from Earde and Hessel!</h1>");
-  const result = await client.db("StockData").collection("IWO").find({}).sort({_id:-1}).limit(50).toArray();
-  let sma50 = 0;
-  for (let x of result) {
-    sma50 += x.close;
-  }
-  sma50 /= 50.0;
-  res.write(`<h1>${JSON.stringify(result)}</h1>`);
-  res.write(`<h1>${sma50}</h1>`);
+  const result = await candlestick.find({symbol: "IWO"}).exec();
+  // const result = await client.db("StockData").collection("IWO").find({}).sort({_id:-1}).limit(50).toArray();
+  // let sma50 = 0;
+  // for (let x of result) {
+  //   sma50 += x.close;
+  // }
+  // sma50 /= 50.0;
+  // res.write(`<h1>${JSON.stringify(result)}</h1>`);
+  // res.write(`<h1>${sma50}</h1>`);
+  res.write(`<h1>${result.close}</h1>`);
   res.end();
 });
 router.get("/another", (req, res) => res.json({ route: req.originalUrl }));
