@@ -6,10 +6,10 @@ dotenv.config({ path: '../../.env' });
 const yahooFinance = require('yahoo-finance');
 
 const mongoose = require('mongoose');
-const uri = `mongodb+srv://${process.env.DATABASE_UN}:${process.env.DATABASE_PW}@citt-cluster.xllgjxx.mongodb.net/?retryWrites=true&w=majority`;
+const databaseName = 'test';
+const uri = `mongodb://${process.env.DATABASE_UN}:${process.env.DATABASE_PW}@ac-xtrksdk-shard-00-00.xllgjxx.mongodb.net:27017,ac-xtrksdk-shard-00-01.xllgjxx.mongodb.net:27017,ac-xtrksdk-shard-00-02.xllgjxx.mongodb.net:27017/${databaseName}?ssl=true&replicaSet=atlas-7yqlx5-shard-0&authSource=admin&retryWrites=true&w=majority`;
 mongoose.connect(uri);
 var db = mongoose.connection;
-db = db.useDb('StockData'); // Dit fixen, hij pakt alsnog Test ipv StockData
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("Connection Successful!");
