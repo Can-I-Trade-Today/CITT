@@ -31,8 +31,9 @@ var candlestick = mongoose.model('Candlestick', candlestickSchema, 'IWO');
 const handler = async function (event, context) {
   const latestIwo = await candlestick.find({}).sort({_id:-1}).limit(1).exec();
   var from = '2000-01-01';
+  var latestDate = undefined;
   if (latestIwo.length > 0) {
-    const latestDate = new Date(latestIwo[0].date);
+    latestDate = new Date(latestIwo[0].date);
     from = latestDate.toISOString('yyyy-mm-dd').split('T')[0];
   }
   const todayDate = new Date();
@@ -48,7 +49,9 @@ const handler = async function (event, context) {
     period: 'd'
   }, async function(err, quotes) {
     quotes.reverse();
-    quotes = quotes.filter(item => !(item.date <= latestDate));
+    if (latestDate) {
+      quotes = quotes.filter(item => !(item.date <= latestDate));
+    }
     let candlesticks = [];
     for (let q of quotes) {
       candlesticks.push(candlestick(q));
