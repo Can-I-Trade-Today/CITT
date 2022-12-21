@@ -6,7 +6,7 @@ dotenv.config({ path: '../../.env' });
 const yahooFinance = require('yahoo-finance');
 
 const mongoose = require('mongoose');
-const databaseName = 'test';
+const databaseName = 'StockData';
 const uri = `mongodb://${process.env.DATABASE_UN}:${process.env.DATABASE_PW}@ac-xtrksdk-shard-00-00.xllgjxx.mongodb.net:27017,ac-xtrksdk-shard-00-01.xllgjxx.mongodb.net:27017,ac-xtrksdk-shard-00-02.xllgjxx.mongodb.net:27017/${databaseName}?ssl=true&replicaSet=atlas-7yqlx5-shard-0&authSource=admin&retryWrites=true&w=majority`;
 mongoose.connect(uri);
 var db = mongoose.connection;
@@ -30,7 +30,7 @@ var candlestick = mongoose.model('Candlestick', candlestickSchema, 'IWO');
 
 const handler = async function (event, context) {
   const latestIwo = await candlestick.find({}).sort({_id:-1}).limit(1).exec();
-  const from = '2000-01-01';
+  var from = '2000-01-01';
   if (latestIwo.length > 0) {
     const latestDate = new Date(latestIwo[0].date);
     from = latestDate.toISOString('yyyy-mm-dd').split('T')[0];
