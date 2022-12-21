@@ -31,6 +31,7 @@ var candlestickSchema = mongoose.Schema({
 
 var candlestick = mongoose.model('Candlestick', candlestickSchema, 'IWO');
 
+console.log('Initializing express router.');
 const router = express.Router();
 router.get("/", async (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
@@ -52,7 +53,11 @@ router.post("/", (req, res) => res.json({ postBody: req.body }));
 
 app.use(bodyParser.json());
 app.use("/.netlify/functions/server", router); // path must route to lambda
-app.use("/", (req, res) => res.sendFile(path.join(__dirname, "../index.html")));
+app.use("/", (req, res) => res.sendFile("index.html", {root: './'}));
 
-module.exports = app;
+module.exports = {
+  app: app,
+  mongoose: mongoose
+}
+// module.exports = app;
 module.exports.handler = serverless(app);
