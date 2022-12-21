@@ -1,6 +1,5 @@
 "use strict";
 const express = require("express");
-const path = require("path");
 const serverless = require("serverless-http");
 const app = express();
 const bodyParser = require("body-parser");
@@ -34,6 +33,7 @@ var candlestick = mongoose.model('Candlestick', candlestickSchema, 'IWO');
 console.log('Initializing express router.');
 const router = express.Router();
 router.get("/", async (req, res) => {
+  console.log('Endpoint / called.');
   res.writeHead(200, { "Content-Type": "text/html" });
   res.write("<h1>Hello from Earde and Hessel!</h1>");
   const result = await candlestick.find({}).sort({_id:-1}).limit(50).exec();
